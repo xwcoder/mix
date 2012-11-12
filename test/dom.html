@@ -1,0 +1,24 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>dom.js</title>
+</head>
+<body>
+    <div id="nav">
+        <ul class=" tit ">
+            <li class="exp tit">首页</li>
+            <li class="exp2  tit  ">播客</li>
+            <li>关于</li>
+        </ul>
+    </div>
+    <script src="../core.js"></script>
+    <script src="../dom.js"></script>
+    <script>
+        var dom = Mix.dom;
+        var ul = dom.getByTag( 'ul' )[0];
+        var li = dom.getByTag( 'li' );
+        console.log( dom.getByClassName( 'tit' ) );
+    </script>
+</body>
+</html>
