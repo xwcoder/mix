@@ -34,6 +34,7 @@ Mix.extend = function ( t, s, defaults ) {
 
         emptyFn : function () {
         },
+
         error : function ( msg ) {
             throw new Error( msg );
         },
@@ -55,11 +56,11 @@ Mix.extend = function ( t, s, defaults ) {
 
             if ( Mix.isArray( list ) ) {
                 for ( var i = 0, len = list.length; i < len; i++ ) {
-                    fn.call( list[i], i, list[i] );
+                    fn.call( list[i], list[i], i );
                 }
             } else if ( Mix.isObject( list ) ) {
                 for ( var p in list ) {
-                    fn.call( list[p], p, list[p] );
+                    fn.call( list[p], list[p], p );
                 }
             }
         },
@@ -82,4 +83,4 @@ Mix.extend = function ( t, s, defaults ) {
             //TODO
         }
     } );
-} )( this, undefined );
+} )( this, this.undefined );
