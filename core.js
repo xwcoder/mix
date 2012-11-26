@@ -43,6 +43,10 @@ Mix.extend = function ( t, s, defaults ) {
             return a && toString.call( a ) == '[object Array]';
         },
 
+        isNumber : function ( n ) {
+            return n && toString.call( n ) == '[object Number]';
+        }
+
         isObject : function ( o ) {
             return o && toString.call( o ) == '[object Object]';
         },
@@ -81,6 +85,85 @@ Mix.extend = function ( t, s, defaults ) {
         
         inherit : function () {
             //TODO
+        },
+
+        /**
+         * Check if two object(objA,objB) are equeals. like equals method in java.
+         * @param {Object} 
+         * @param {Object}  
+         * @return {Boolean}
+         */
+        equals : function ( objA, objB ) {
+            if ( typeof arguments[0] != typeof arguments[1] ) {
+                return false;
+            }
+            if ( arguments[0] instanceof Array ) {
+                if ( arguments[0].length != arguments[1].length ) {
+                    return false;
+                }
+                var allElementsEqual = true;
+                for ( var i = 0; i < arguments[0].length; ++i ) {
+                    if ( typeof arguments[0][i] != typeof arguments[1][i] ) {
+                        return false;
+                    }
+                    if ( typeof arguments[0][i] == 'number' && typeof arguments[1][i] == 'number' ) {
+                        allElementsEqual = ( arguments[0][i] === arguments[1][i] );
+                    } else {
+                        allElementsEqual = arguments.callee( arguments[0][i], arguments[1][i] ); 
+                    }
+                }
+                return allElementsEqual;
+            }
+        
+            if ( arguments[0] instanceof Object && arguments[1] instanceof Object ) {
+                var result = true;
+                var attributeLengthA = 0;
+                var attributeLengthB = 0;
+                for ( var o in arguments[0] ) {
+                    if ( typeof arguments[0][o] == 'number' || typeof arguments[0][o] == 'string') {
+                        result = arguments[0][o] == arguments[1][o];
+                         //result = eval( "arguments[0]['" + o + "'] == arguments[1]['" + o + "']" );
+                    }else {
+                        //if ( !arguments.callee(eval("arguments[0]['" + o + "']"), eval("arguments[1]['" + o + "']" ) ) ) {
+                        if ( !arguments.callee( arguments[0][o], arguments[1][o] ) ) {
+                            result = false;
+                            return result;
+                        }
+                    }
+                    ++attributeLengthA;
+                }
+                
+                for ( o in arguments[1] ) {
+                    ++attributeLengthB;
+                }
+                
+                if ( attributeLengthA != attributeLengthB ) {
+                     result = false;
+                }
+                return result;
+            }
+            return arguments[0] == arguments[1];
+        },
+
+        /**
+         * A util method to deep clone a object.
+         * @param {} obj The object to be cloned.
+         * @param {String} preventName The property name do not to be cloned. 
+         * @return {}
+         */
+        clone : function ( obj, preventName ) {
+            if ( typeof obj == 'object' ) {
+                var res = obj instanceof Array ? [] : {};
+                for( var p in obj ) {
+                    if ( p != preventName ) {
+                        res[p] = arguments.callee( obj[p], preventName );
+                    }
+                }
+                return res;
+            } else if ( toString.call( obj ) === '[object Function]' ) {
+                return ( new obj() ).constructor;			
+            }
+            return obj;
         }
     } );
 } )( this, this.undefined );
