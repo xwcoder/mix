@@ -93,6 +93,8 @@ Mix.extend = function ( t, s, defaults ) {
             F.prototype = sp.prototype;
             sb.prototype = new F();
             sb.prototype.constructor = sb;
+
+            sb.prototype.super = sp.prototype;
             
             overide = overide || {};
             Mix.extend( sb.prototype, overide );

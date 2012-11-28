@@ -26,8 +26,9 @@
         } );
 
         com.sohu.tv = function () {
+            this.super.constructor.call( this );
             this.name = '搜狐视频';
-            this.location = '同方大厦';
+            //this.location = '同方大厦';
         };
 
         Mix.inherit( com.sohu.tv, com.sohu, {
@@ -48,7 +49,6 @@
             console.log( t2.getName() );
             console.log( t2.getLocation() );
             console.log( t2.getInfo() );
-            console.log( com.sohu.tv.prototype.constructor );
         console.groupEnd();
     </script>
 </body>
