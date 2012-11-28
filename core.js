@@ -45,7 +45,7 @@ Mix.extend = function ( t, s, defaults ) {
 
         isNumber : function ( n ) {
             return n && toString.call( n ) == '[object Number]';
-        }
+        },
 
         isObject : function ( o ) {
             return o && toString.call( o ) == '[object Object]';
@@ -71,7 +71,7 @@ Mix.extend = function ( t, s, defaults ) {
 
         namespace : function () {
             var args = slice.call( arguments );
-            Mix.each( args, function ( index, item ) {
+            Mix.each( args, function ( item, index ) {
                 var d = item.split( '.' ); 
                 if ( typeof window[ d[0] ] == 'undefined' ) {
                     window[ d[0] ] = {};
@@ -82,9 +82,24 @@ Mix.extend = function ( t, s, defaults ) {
                 }
             } );
         },
-        
-        inherit : function () {
-            //TODO
+
+        /**
+         * @description 实现继承, 使用组合寄生方式
+         * @param {Function} sb 子类构造函数
+         * @param {Function} sp 父类构造函数
+         */
+        inherit : function ( sb, sp, overide ) {
+            var F = function () {};
+            F.prototype = sp.prototype;
+            sb.prototype = new F();
+            sb.prototype.constructor = sb;
+            
+            overide = overide || {};
+            Mix.extend( sb.prototype, overide );
+
+            if ( sp.prototype.constructor === Object.prototype.constructor ) {
+                sp.prototype.constructor = sp;
+            }
         },
 
         /**

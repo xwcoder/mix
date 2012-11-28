@@ -8,6 +8,48 @@
     <script src="../core.js"></script>
     <script>
         Mix.namespace( 'com.sohu', 'com.sohu.tv' );
+        
+        com.sohu = function () {
+            this.name = 'com.sohu';
+            this.location = '搜狐大厦';
+        };
+        Mix.extend( com.sohu.prototype, {
+            getName : function () {
+                return this.name;
+            },
+            getLocation : function () {
+                return this.location;
+            },
+            getInfo : function () {
+                return this.name + ' : ' + this.location;
+            }
+        } );
+
+        com.sohu.tv = function () {
+            this.name = '搜狐视频';
+            this.location = '同方大厦';
+        };
+
+        Mix.inherit( com.sohu.tv, com.sohu, {
+            getInfo : function () {
+                return this.location + ' : ' + this.name;
+            }
+        } );
+
+        console.group();
+            var t1 = new com.sohu();
+            console.log( t1.getName() );
+            console.log( t1.getLocation() );
+            console.log( t1.getInfo() );
+        console.groupEnd();
+
+        console.group();
+            var t2 = new com.sohu.tv();
+            console.log( t2.getName() );
+            console.log( t2.getLocation() );
+            console.log( t2.getInfo() );
+            console.log( com.sohu.tv.prototype.constructor );
+        console.groupEnd();
     </script>
 </body>
 </html>
