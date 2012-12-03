@@ -1,0 +1,43 @@
+/**
+ * 基于"Eric Meyer’s Reset CSS 2.0" 和 "YUI 3.5.0 - reset.css"
+ */
+
+/**
+ * 全局magin和padding重置
+ */
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td{margin:0;padding:0;}
+/**
+ * 表格
+ */
+table{border-collapse:collapse;border-spacing:0;}
+caption, th{text-align:left;}
+/**
+ * 边框
+ */
+fieldset, img{border:0;}
+abbr, acronym{border:0;font-variant:normal;}
+/**
+ * 外轮廓
+ */
+:focus {outline:0 none;}
+/**
+ * 字体
+ */
+address, caption, cite, code, dfn, em, strong, th, var{font-style:normal;font-weight:normal;}
+h1, h2, h3, h4, h5, h6{font-size:100%;font-weight:normal;}
+input, textarea, select{font-family:inherit;font-size:inherit;font-weight:inherit;}
+/**IE中input, textarea, select 字体不继承**/
+input, textarea, select{*font-size:100%;}
+/**
+ * 列表
+ */
+ol, ul{list-style:none;}
+/**
+ * 引用
+ */
+blockquote, q{quotes:none;}
+blockquote:before, blockquote:after, q:before, q:after {content:'';content:none;}
+/**
+ * html5
+ */
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section{display:block;}
