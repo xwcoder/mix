@@ -5,11 +5,51 @@
     <title>style.css</title>
     <link rel="stylesheet" type="text/css" href="../style/reset.css" />
     <style>
-        div{margin:10px;width:200px;height:200px;background:#FFDD22;}
+        div{ margin:20px;width:200px;height:200px;background:#FFDD22;}
+        #test2{background:red;position:relative;top:100px;left:200px;}
     </style>
 </head>
 <body>
-    <div></div>
-    <div></div>
+    <script src="../core.js"></script>
+    <script src="../dom.js"></script>
+    <script src="../style.js"></script>
+    <div id="test1">
+        <div id="test2"></div>
+    </div>
+    <script>
+        ( function () {
+            var mix = Mix;
+            var console = {
+                log : function ( s ) {
+                    if ( !mix.isIE ) {
+                        window.console.log( s );
+                    }
+                },
+
+                info : function ( s ) {
+                }
+            };
+
+            var css = Mix.css;
+            var dom = Mix.dom;
+
+            console.log( 'hieght:' +  css.getStyle( dom.getById( 'test1' ), 'height' ) );
+            console.log( 'width:' +  css.getStyle( dom.getById( 'test1' ), 'width' ) );
+            console.log( 'z-index:' +  css.getStyle( dom.getById( 'test1' ), 'z-index' ) );
+            console.log( 'display:' +  css.getStyle( dom.getById( 'test1' ), 'display' ) );
+
+            css.setStyle(dom.getById( 'test1' ), { height : '300px', width : '300px' } );
+            console.log( 'hieght:' +  css.getStyle( dom.getById( 'test1' ), 'height' ) );
+            console.log( 'width:' +  css.getStyle( dom.getById( 'test1' ), 'width' ) );
+
+            console.log( css.offset( dom.getById( 'test1' ) ) );
+            console.log( css.offset( dom.getById( 'test2' ) ) );
+
+            console.log( css.pos( dom.getById( 'test2' ) ) );
+            console.info( css.pos( dom.getById( 'test2' ) ) );
+
+            console.log( css.offsetToParent( dom.getById( 'test2' ) ) );
+        } )();
+    </script>
 </body>
 </html>

@@ -29,8 +29,21 @@ Mix.extend = function ( t, s, defaults ) {
 ( function ( window, undefined ) {
     var toString = Object.prototype.toString;  
     var slice = Array.prototype.slice;
+    var ua = navigator.userAgent;
+    var isIE = !!window.ActiveXObject;
+    var isIE6 = isIE && !window.XMLHttpRequest;
+    var isIE7 = ua.indexOf( 'msie 7' ) > -1;
+    var isIE8 = ua.indexOf( 'msie 7' ) > -1;
     
     Mix.extend( Mix, {
+
+        isIE : isIE,
+
+        isIE6 : isIE6,
+
+        isIE7 : isIE7,
+
+        isIE8 : isIE8,
 
         emptyFn : function () {
         },
@@ -94,7 +107,7 @@ Mix.extend = function ( t, s, defaults ) {
             sb.prototype = new F();
             sb.prototype.constructor = sb;
 
-            sb.prototype.super = sp.prototype;
+            sb.prototype.superClass = sp.prototype;
             
             overide = overide || {};
             Mix.extend( sb.prototype, overide );
