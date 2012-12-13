@@ -156,7 +156,7 @@
          * @description 设置或获得元素的宽度
          */
         width : function () {
-            var args = Array.prototype.slice( arguments );
+            var args = Array.prototype.slice.call( arguments );
             if ( args.length < 1 ) {
                 return;
             }
