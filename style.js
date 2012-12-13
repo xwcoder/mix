@@ -53,7 +53,7 @@
             var old = {};
             if ( typeof styles === 'object' ) {
                 for( var p in styles ) {
-                    old[ p ] = css.getStyle( p );
+                    old[ p ] = css.getStyle( el, p );
                     if ( p.toLowerCase() == 'opacity' ) {
                         css.opacity( el, styles[ p ] );
                     } else {
@@ -61,7 +61,7 @@
                     }
                 }
             } else {
-                old[ arguments[ 1 ] ] = css.getStyle( arguments[ 1 ] );
+                old[ arguments[ 1 ] ] = css.getStyle( el, arguments[ 1 ] );
                 if ( arguments[ 1 ].toLowerCase() == 'opacity' ) {
                     css.opacity( el, arguments[ 2 ] );
                 } else {
