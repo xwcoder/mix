@@ -98,6 +98,7 @@ Mix.extend = function ( t, s, defaults ) {
                 var o = window[ d[0] ];
                 for ( var i = 1, len = d.length; i < len; i++ ) {
                     o[ d[i] ] = o[ d[i] ] || {};
+                    o = o[ d[i] ];
                 }
             } );
         },

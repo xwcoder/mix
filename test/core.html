@@ -7,8 +7,8 @@
 <body>
     <script src="../core.js"></script>
     <script>
-        Mix.namespace( 'com.sohu', 'com.sohu.tv' );
-        
+        Mix.namespace( 'com.sohu.tv' );
+
         com.sohu = function () {
             this.name = 'com.sohu';
             this.location = '搜狐大厦';
@@ -26,7 +26,7 @@
         } );
 
         com.sohu.tv = function () {
-            this.super.constructor.call( this );
+            this.superClass.constructor.call( this );
             this.name = '搜狐视频';
             //this.location = '同方大厦';
         };
