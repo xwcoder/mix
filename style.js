@@ -200,7 +200,7 @@
         },
 
         opacity : function ( el, opacity ) {
-            if ( mix .isIE ) {
+            if ( mix.isIE ) {
                 el.style.filters = 'alpha(opacity=' + ( opacity * 100 ) + ')';
             } else {
                 el.style[ 'opacity' ] = opacity;
