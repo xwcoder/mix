@@ -73,11 +73,17 @@ Mix.extend = function ( t, s, defaults ) {
 
             if ( Mix.isArray( list ) ) {
                 for ( var i = 0, len = list.length; i < len; i++ ) {
-                    fn.call( list[i], list[i], i );
+                    var r = fn.call( list[i], list[i], i );
+                    if ( r === false) {
+                        return;
+                    }
                 }
             } else if ( Mix.isObject( list ) ) {
                 for ( var p in list ) {
-                    fn.call( list[p], list[p], p );
+                    var r = fn.call( list[p], list[p], p );
+                    if ( r === false) {
+                        return;
+                    }
                 }
             }
         },
