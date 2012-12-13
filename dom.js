@@ -20,8 +20,8 @@ Mix.namespace( 'Mix.dom' );
          */
         create : function ( tag, styles, attrs ) {
             var el = document.createElement( tag );
-            styles && typeof styles == 'Object' && mix.css.setStyle( el, styles );
-            attrs && typeof attrs == 'Object' && mix.dom.setAttrs( el, attrs );
+            styles && typeof styles == 'object' && mix.css.setStyle( el, styles );
+            attrs && typeof attrs == 'object' && mix.dom.setAttrs( el, attrs );
 
             return el;
         },
