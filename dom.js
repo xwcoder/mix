@@ -143,7 +143,7 @@ Mix.namespace( 'Mix.dom' );
         setAttrs : function ( el, attrs ) {
             if ( attrs && typeof attrs == 'object' ) {
                 var tp = this;
-                mix.each( attrs, function ( vaule, name ) {
+                mix.each( attrs, function ( value, name ) {
                     tp.attr( el, name, value ); 
                 } );
             }
