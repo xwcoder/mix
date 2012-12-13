@@ -121,7 +121,7 @@
          * @description 设置或获得元素的高度
          */
         height : function () {
-            var args = Array.prototype.slice( arguments );
+            var args = Array.prototype.slice.call( arguments );
             if ( args.length < 1 ) {
                 return;
             }
