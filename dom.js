@@ -3,7 +3,7 @@
  */
 Mix.namespace( 'Mix.dom' );
 
-( function () {
+( function ( mix ) {
 
     var dom = Mix.dom; 
     var create = function ( el ) {
@@ -14,6 +14,17 @@ Mix.namespace( 'Mix.dom' );
     };
 
     Mix.extend( Mix.dom, {
+        
+        /**
+         * @description 创建元素
+         */
+        create : function ( tag, styles, attrs ) {
+            var el = document.createElement( tag );
+            styles && typeof styles == 'Object' && mix.css.setStyle( el, styles );
+            attrs && typeof attrs == 'Object' && mix.dom.setAttrs( el, attrs );
+
+            return el;
+        },
         
         /**
          * @description 获取el的上一个兄弟节点，没有则返回null
@@ -125,6 +136,18 @@ Mix.namespace( 'Mix.dom' );
 
             return el[name] || el.getAttribute( name ) || '';
         },
+
+        /**
+         * @description 设置元素属性
+         */
+        setAttrs : function ( el, attrs ) {
+            if ( attrs && typeof attrs == 'object' ) {
+                var tp = this;
+                mix.each( attrs, function ( vaule, name ) {
+                    tp.attr( el, name, value ); 
+                } );
+            }
+        },
         
         /**
          * @description 将child插入到parent的最后
@@ -148,4 +171,4 @@ Mix.namespace( 'Mix.dom' );
             after.nextSibling ?  dom.before( node, after.nextSibling ) : append( after.parent, node );
         }
     } );
-} )();
+} )( Mix );
