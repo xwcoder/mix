@@ -50,6 +50,14 @@
             console.log( t2.getLocation() );
             console.log( t2.getInfo() );
         console.groupEnd();
+
+        window.onload = function () {
+            console.log( 'window.onload' );
+        };
+
+        Mix.ready( function () {
+            console.log( 'dom ready' );
+        } );
     </script>
 </body>
 </html>
