@@ -76,22 +76,31 @@ Mix.namespace( 'Mix.dom' );
          */
         getByTag : function ( tagName, el ) {
             var list = ( el || document ).getElementsByTagName( tagName || '*' ) || [];
-            return Array.prototype.slice.call( list, 0 );
+            var h = [];
+            for ( var i = 0; i < list.length; i++ ) {
+                h.push( list[ i ] );
+            }
+            return h;
         },
         
         /**
          * @description 获得el下含有指定类名的元素
          */
         getByClassName : function ( className, el ) {
-            if ( document.getElementsByClassName ) {
-                return (el || document).getElementsByClassName( className );
-            }
             var h = [];
-            var list = dom.getByTag( null, el );
+            var list;
             var reg = new RegExp( '(^|\\s*)' + className + '(\\s*|$)' );
 
-            for ( var i = 0, len = list.length; i < len; i++) {
-                reg.test( dom.attr( list[i], 'class') ) && h.push( list[i] );
+            if ( document.getElementsByClassName ) {
+                list = (el || document).getElementsByClassName( className );
+                for ( var i = 0, len = list.length; i < len; i++ ) {
+                    h.push( list.item( i ) );
+                }
+            } else {
+                list = dom.getByTag( null, el );
+                for ( var i = 0, len = list.length; i < len; i++) {
+                    reg.test( dom.attr( list[ i ], 'class') ) && h.push( list[ i ] );
+                }
             }
             return h;
         },
