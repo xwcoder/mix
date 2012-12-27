@@ -169,7 +169,7 @@ Mix.namespace( 'Mix.dom' );
          * @description 将node插入到before之前
          */
         before : function ( node, before ) {
-            var parent = node.parentNode;
+            var parent = before.parentNode;
             parent.insertBefore( create( node ), before );
         },
         
