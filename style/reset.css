@@ -19,7 +19,9 @@ abbr, acronym{border:0;font-variant:normal;}
 /**
  * 外轮廓
  */
+/**
 :focus {outline:0 none;}
+**/
 /**
  * 字体
  */
